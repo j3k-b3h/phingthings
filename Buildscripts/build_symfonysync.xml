@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="PhingDeploy" default="deploy" basedir=".">
+
+    <property name="srcdir" value="${project.basedir}" override="true" />
+    <property name="ftp.host" value="XXX" override="true" />
+    <property name="ftp.username" value="XXX" override="true" />
+    <property name="ftp.password" value="XXX" override="true" />
+    <property name="ftp.dir" value="/XXX/XXX" override="true" />
+    <property name="ftp.mode" value="binary" override="true" />
+
+    <includepath classpath="/home/jacek/PHPClasses" />
+    <taskdef name="symfonysync" classname="MySymfonySyncTask" />
+
+    <target name="deploy" description="Synchronisiert Änderungen mit Produktivserver">
+        <echo msg="Synchronisiere Anwendung mit ${ftp.host}" />
+        <symfonysync
+            host="${ftp.host}"
+            username="${ftp.username}"
+            password="${ftp.password}"
+            targetfolder="${ftp.dir}"
+            sourcefolder="${srcdir}"
+        />
+    </target>
+
+</project>
